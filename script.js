@@ -1,6 +1,6 @@
 const postsContainer = document.querySelector(".posts");
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
-const errorMsg = "Oops, something went wrong. Please, try again later";
+const errorMsg = "Oops, something went wrong! Please, try again later.";
 
 async function renderPostsPage() {
   const posts = await fetchPosts();
@@ -33,8 +33,10 @@ function renderPosts(posts) {
 
 function createPostElem(post) {
   const postElem = createElemWithClass("div", "post");
-  postElem.innerHTML = `<h2 class="post-title">${post.title}</h2>
-  <p class="post-body">${post.body}</p>`;
+  postElem.innerHTML = `<h2 class="post__title">${capitalizeFirstLetter(
+    post.title
+  )}</h2>
+  <p class="post__body">${capitalizeFirstLetter(post.body)}</p>`;
   return postElem;
 }
 
@@ -42,6 +44,11 @@ function createElemWithClass(tagname, classname) {
   const newElem = document.createElement(tagname);
   newElem.classList.add(classname);
   return newElem;
+}
+
+function capitalizeFirstLetter(str) {
+  if (!str) return "";
+  return str[0].toUpperCase() + str.slice(1);
 }
 
 document.addEventListener("DOMContentLoaded", renderPostsPage);
