@@ -1,6 +1,7 @@
 const postsContainer = document.querySelector(".posts");
 const API_URL = "https://jsonplaceholder.typicode.com/posts";
 const errorMsg = "Oops, something went wrong! Please, try again later.";
+const ERROR_MSG = "Oops, something went wrong! Please, try again later.";
 
 async function renderPostsPage() {
   const posts = await fetchPosts();
@@ -20,7 +21,7 @@ async function fetchPosts() {
 
 function renderErrorMsg() {
   const errorElem = createElemWithClass("p", "error_msg");
-  errorElem.textContent = errorMsg;
+  errorElem.textContent = ERROR_MSG;
   postsContainer.append(errorElem);
 }
 
