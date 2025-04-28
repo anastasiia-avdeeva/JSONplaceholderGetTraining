@@ -32,7 +32,7 @@ function renderPosts(posts) {
 }
 
 function createPostElem(post) {
-  const postElem = createElemWithClass("div", "post");
+  const postElem = createElemWithClass("li", "post");
   postElem.innerHTML = `<h2 class="post__title">${capitalizeFirstLetter(
     post.title
   )}</h2>

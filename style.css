@@ -13,8 +13,16 @@ h6 {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  list-style: none;
+}
+
 .title,
-.error_msg {
+.error-msg {
   margin: 15px;
   text-align: center;
   font-size: 42px;
