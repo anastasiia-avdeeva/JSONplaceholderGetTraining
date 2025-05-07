@@ -10,6 +10,9 @@ async function renderPostsPage() {
 async function fetchPosts() {
   try {
     const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const posts = await response.json();
     return posts;
   } catch (err) {
@@ -33,10 +36,7 @@ function renderPosts(posts) {
 
 function createPostElem(post) {
   const postElem = createElemWithClass("li", "post");
-  postElem.innerHTML = `<h2 class="post__title">${capitalizeFirstLetter(
-    post.title
-  )}</h2>
-  <p class="post__body">${capitalizeFirstLetter(post.body)}</p>`;
+  postElem.innerHTML = getPostLayout(post);
   return postElem;
 }
 
@@ -44,6 +44,11 @@ function createElemWithClass(tagname, classname) {
   const newElem = document.createElement(tagname);
   newElem.classList.add(classname);
   return newElem;
+}
+
+function getPostLayout(post) {
+  return `<h2 class="post__title">${capitalizeFirstLetter(post.title)}</h2>
+  <p class="post__body">${capitalizeFirstLetter(post.body)}</p>`;
 }
 
 function capitalizeFirstLetter(str) {
